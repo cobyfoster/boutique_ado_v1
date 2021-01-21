@@ -52,6 +52,10 @@ body {
     color: #000 !important;
 }
 
+.bg-black {
+    background: black !important;
+}
+
 .border-black {
     border: 1px solid black !important;
 }
