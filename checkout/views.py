@@ -5,7 +5,6 @@ from django.contrib import messages
 from .forms import OrderForm
 
 
-
 def checkout(request):
     bag = request.session.get('bag', {})
 
@@ -17,6 +16,8 @@ def checkout(request):
     template = 'checkout/checkout.html'
     context = {
         'order_form': order_form,
+        'stripe_public_key': 'pk_test_51IDUO8HbTIrT6qJdbIm7a8EoeDQOyh8IooKD8OKj0mKQb7ALmLr6BFyFKaAOKeehAX4RJtNJAZZM8wb4uOQYZOtr00AoW0fqDS',
+        'slient_secret': 'test client secret'
     }
 
     return render(request, template, context)
