@@ -25,7 +25,7 @@ SECRET_KEY = 'p@ei#69*b*zz3u4yie-$()@cy^l(+x9&@6ypx+r0lm(3%_9hr7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['boutique-ado-coby.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -76,7 +76,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request', # required by allauth
+                'django.template.context_processors.request',  # required by allauth
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
@@ -117,17 +117,18 @@ WSGI_APPLICATION = 'boutique_ado.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-DATABASES = {
-  'default': {
-     'ENGINE': 'django.db.backends.sqlite3',
-       'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse('postgres://juzzusjeadrelk:047c42e3668d8b3b0d37f5c3ea491ac4b9b1a7d16d90587b2a9319f857ea81d8@ec2-52-211-161-21.eu-west-1.compute.amazonaws.com:5432/dbbcka9i88gokn')
     }
- }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
-DATABASES = {
-    'default': dj_database_url.parse('postgres://juzzusjeadrelk:047c42e3668d8b3b0d37f5c3ea491ac4b9b1a7d16d90587b2a9319f857ea81d8@ec2-52-211-161-21.eu-west-1.compute.amazonaws.com:5432/dbbcka9i88gokn')
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
